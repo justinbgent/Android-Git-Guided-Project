@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_edit_book.*
 
 /*
@@ -48,10 +49,15 @@ class EditBookActivity : AppCompatActivity() {
     }
 
     private fun saveBook() {
+
         // todo 4: Check for a valid bookName and display a Toast if one does not exist
         // todo 5: Commit our changes with a good commit message
         // todo 6: Merge with development and open a pull-request
         val bookName = book_name_text.text.toString()
+        if (bookName.isEmpty()){
+            Toast.makeText(this, "Books Require Title", Toast.LENGTH_SHORT).show()
+            return
+        }
         val bookReason = book_reason_text.text.toString()
         val hasBeenRead = read_switch.isChecked
         val book = Book(id!!, bookName, bookReason, hasBeenRead)
